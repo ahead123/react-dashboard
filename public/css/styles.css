@@ -1,0 +1,48 @@
+.dashboard {
+	margin-bottom: 30px;
+}
+
+.weather-box {
+	margin-top: 30px;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.weather-box > div {
+	padding-top: 40px!important;
+}
+
+.weather-box > div > div > h3 {
+	color: #ffffff;
+
+}
+
+.weather-box > div > div > p {
+	color: #ffffff;
+
+}
+
+.sidebar-widget {
+	min-height: 175px;
+	background-color: #ecf0f1!important;
+	margin-bottom: 25px;
+}
+
+.sidebar-widget > div > div {
+	padding-top: 1px;
+	padding-left: 10px;
+	padding-bottom: 2px;
+
+}
+
+.sidebar-widget > div > div > h3 {
+	font-size: 15px!important;
+	color: #ffffff;
+
+}
+
+.sidebar-widget > div > div > p {
+	font-size: 18px!important;
+	color: #ffffff;
+
+}

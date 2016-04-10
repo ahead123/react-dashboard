@@ -3,20 +3,63 @@
 
 	<head>
 
-		<title>CommonJS React Skeleton</title>
+		<title>React Dashboard</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
 	</head>
 
 	<body>
 	
-		<div class="container">
-			<div class="row">
-				<div id="ingredients"></div>
-				<div id="todo"></div>
-				<div id="christmas"></div>
-			</div>		
-		</div>
+		<div class="container-fluid col-sm-12">
+				
+			<div class="col-sm-9">
+
+				<div class="row">
+	      
+		       	<div class="col-md-4" id="followers"></div>
+						<div class="col-md-4" id="monthly_income"></div>
+						<div class="col-md-4" id="yearly_income"></div>
+	     
+				</div>	
+
+				<div class="row">
+				
+						<div class="col-md-12 dashboard" id="dashboard_one"></div>
+		
+				</div>	
+
+				<div class="row">
+					
+						<div class="col-md-12 dashboard" id="dashboard_two"></div>
+			
+				</div>	
+
+			</div><!--closes col-sm-9 -->
+
+				<div class="col-sm-3">
+
+					<div class="row">
+							<div class="weather-box" id="weather_box"></div>
+					</div>
+					<div class="row">
+							<div class="sidebar-widget" id="visitors"></div>
+					</div>
+					<div class="row">
+							<div class="sidebar-widget" id="bounce"></div>
+					</div>
+					<div class="row">
+							<div class="sidebar-widget" id="search"></div>
+					</div>
+					<div class="row">
+							<div class="sidebar-widget" id="traffic"></div>
+					</div>	
+
+				</div>
+
+			</div><!-- container -->
+
+		
 
 		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>

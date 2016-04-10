@@ -19364,144 +19364,205 @@ module.exports = require('./lib/React');
 },{"./lib/React":53}],166:[function(require,module,exports){
 var React = require('react');
 
-var ListItem = require('./ListItem.jsx');
+var WidgetText = require('./WidgetText.jsx');
 
-var List = React.createClass({
-	displayName: 'List',
+var LargeWidget = React.createClass({
+	displayName: 'LargeWidget',
 
 
 	render: function () {
 
-		var createItem = function (text, index) {
+		var colorPick = {
+			minHeight: 200
+		};
 
-			return React.createElement(ListItem, { key: text + index, text: text });
+		if (this.props.changeBackground) {
+			colorPick.background = this.props.changeBackground;
+		}
+
+		var widgetFooterStyle = {
+
+			background: "#484d4d",
+			color: "#dcdcdc"
+
+		};
+
+		var addMargin = {
+			marginBottom: 30
 		};
 
 		return React.createElement(
-			'ul',
+			'div',
 			null,
-			this.props.items.map(createItem)
-		);
-	}
-
-});
-
-module.exports = List;
-
-},{"./ListItem.jsx":167,"react":165}],167:[function(require,module,exports){
-var React = require('react');
-
-var ListItem = React.createClass({
-	displayName: "ListItem",
-
-
-	render: function () {
-
-		return React.createElement(
-			"li",
-			{ className: "list-unstyled" },
+			React.createElement('div', { style: colorPick }),
 			React.createElement(
-				"h4",
+				'div',
 				null,
-				this.props.text
+				React.createElement(
+					'div',
+					{ style: widgetFooterStyle, className: 'col-md-4 text-center' },
+					React.createElement(WidgetText, { heading: this.props.heading1, textBody: this.props.textBody1 })
+				),
+				React.createElement(
+					'div',
+					{ style: widgetFooterStyle, className: 'col-md-4 text-center' },
+					React.createElement(WidgetText, { heading: this.props.heading2, textBody: this.props.textBody2 })
+				),
+				React.createElement(
+					'div',
+					{ style: widgetFooterStyle, className: 'col-md-4 text-center' },
+					React.createElement(WidgetText, { heading: this.props.heading3, textBody: this.props.textBody3 })
+				)
 			)
 		);
 	}
 
 });
 
-module.exports = ListItem;
+module.exports = LargeWidget;
 
-},{"react":165}],168:[function(require,module,exports){
+},{"./WidgetText.jsx":170,"react":165}],167:[function(require,module,exports){
 var React = require('react');
 
-var List = require('./List.jsx');
+var WidgetText = require('./WidgetText.jsx');
 
-var ListManager = React.createClass({
-	displayName: 'ListManager',
+var SidebarWidget = React.createClass({
+	displayName: 'SidebarWidget',
 
-	getInitialState: function () {
-		return { items: [], newItemText: '' };
-	},
-	onChange: function (e) {
-		this.setState({ newItemText: e.target.value });
-	},
-	handleSubmit: function (e) {
-		e.preventDefault();
 
-		var currentItems = this.state.items;
-
-		currentItems.push(this.state.newItemText);
-
-		this.setState({ items: currentItems, newItemText: '' });
-	},
 	render: function () {
 
-		var divStyle = {
-			marginTop: 10
-		};
+		var sidebarStyle = {};
 
-		var headingStyle = {};
-
-		if (this.props.headingColor) {
-			headingStyle.background = this.props.headingColor;
+		if (this.props.changeSidebarBackground) {
+			sidebarStyle.background = this.props.changeSidebarBackground;
 		}
 
 		return React.createElement(
 			'div',
-			{ style: divStyle, className: 'col-sm-4' },
+			{ style: sidebarStyle },
+			React.createElement(WidgetText, { heading: this.props.sideBarHeading, textBody: this.props.sideBarTextBody })
+		);
+	}
+
+});
+
+module.exports = SidebarWidget;
+
+},{"./WidgetText.jsx":170,"react":165}],168:[function(require,module,exports){
+var React = require('react');
+
+var WidgetText = require('./WidgetText.jsx');
+
+var SmallWidget = React.createClass({
+	displayName: 'SmallWidget',
+
+
+	render: function () {
+
+		var widgetStyle = {
+
+			marginTop: 30,
+			background: "#f5f7fa"
+
+		};
+
+		return React.createElement(
+			'div',
+			{ style: widgetStyle, className: 'well' },
+			React.createElement(WidgetText, { heading: this.props.heading, textBody: this.props.textBody })
+		);
+	}
+
+});
+
+module.exports = SmallWidget;
+
+},{"./WidgetText.jsx":170,"react":165}],169:[function(require,module,exports){
+var React = require('react');
+
+var WidgetText = require('./WidgetText.jsx');
+
+var WeatherWidget = React.createClass({
+	displayName: 'WeatherWidget',
+
+
+	render: function () {
+
+		var weatherStyle = {
+			minHeight: 175
+
+		};
+
+		if (this.props.weatherColor) {
+			weatherStyle.background = this.props.weatherColor;
+		}
+
+		return React.createElement(
+			'div',
+			{ style: weatherStyle },
+			React.createElement(WidgetText, { heading: this.props.weatherHeading, textBody: this.props.weatherTextBody })
+		);
+	}
+
+});
+
+module.exports = WeatherWidget;
+
+},{"./WidgetText.jsx":170,"react":165}],170:[function(require,module,exports){
+var React = require('react');
+
+var WidgetText = React.createClass({
+	displayName: 'WidgetText',
+
+
+	render: function () {
+
+		return React.createElement(
+			'div',
+			null,
 			React.createElement(
-				'div',
-				{ className: 'panel panel-primary' },
-				React.createElement(
-					'div',
-					{ style: headingStyle, className: 'panel-heading' },
-					React.createElement(
-						'h3',
-						{ className: 'text-center' },
-						this.props.title
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'row panel-body' },
-					React.createElement(
-						'form',
-						{ onSubmit: this.handleSubmit },
-						React.createElement(
-							'div',
-							{ className: 'col-sm-8' },
-							React.createElement('input', { className: 'form-control', onChange: this.onChange, value: this.state.newItemText })
-						),
-						React.createElement(
-							'div',
-							{ className: 'col-sm-2' },
-							React.createElement(
-								'button',
-								{ className: 'btn btn-primary' },
-								'Add'
-							)
-						)
-					)
-				),
-				React.createElement(List, { items: this.state.items })
+				'h3',
+				null,
+				this.props.heading
+			),
+			React.createElement(
+				'p',
+				null,
+				this.props.textBody
 			)
 		);
 	}
 
 });
 
-module.exports = ListManager;
+module.exports = WidgetText;
 
-},{"./List.jsx":166,"react":165}],169:[function(require,module,exports){
+},{"react":165}],171:[function(require,module,exports){
 var React = require('react');
 
 var ReactDOM = require('react-dom');
 
-var ListManager = require('./components/ListManager.jsx');
+var SmallWidget = require('./components/SmallWidget.jsx');
 
-ReactDOM.render(React.createElement(ListManager, { title: 'Ingredients' }), document.getElementById('ingredients'));
-ReactDOM.render(React.createElement(ListManager, { headingColor: '#16a085', title: 'ToDo' }), document.getElementById('todo'));
-ReactDOM.render(React.createElement(ListManager, { headingColor: '#c0392b', title: 'Christmas' }), document.getElementById('christmas'));
+var LargeWidget = require('./components/LargeWidget.jsx');
 
-},{"./components/ListManager.jsx":168,"react":165,"react-dom":29}]},{},[169]);
+var WeatherWidget = require('./components/WeatherWidget.jsx');
+
+var SidebarWidget = require('./components/SidebarWidget.jsx');
+
+ReactDOM.render(React.createElement(SmallWidget, { heading: '20', textBody: 'Followers added this month' }), document.getElementById('followers'));
+ReactDOM.render(React.createElement(SmallWidget, { heading: '$ 1250', textBody: 'Average Monthly Income' }), document.getElementById('monthly_income'));
+ReactDOM.render(React.createElement(SmallWidget, { heading: '$ 13865', textBody: 'Yearly Income Goal' }), document.getElementById('yearly_income'));
+
+ReactDOM.render(React.createElement(LargeWidget, { changeBackground: '#0096d0', heading1: '15080', heading2: '12000', heading3: '5100', textBody1: 'Shot Views', textBody2: 'Likes', textBody3: 'Comments' }), document.getElementById('dashboard_one'));
+ReactDOM.render(React.createElement(LargeWidget, { changeBackground: '#cd59ae', heading1: '15080', heading2: '12000', heading3: '5100', textBody1: 'Shot Views', textBody2: 'Likes', textBody3: 'Comments' }), document.getElementById('dashboard_two'));
+
+ReactDOM.render(React.createElement(WeatherWidget, { weatherColor: '#ff8a00', weatherHeading: '18 Celsius', weatherTextBody: 'Paris' }), document.getElementById('weather_box'));
+
+ReactDOM.render(React.createElement(SidebarWidget, { changeSidebarBackground: '#0096d0', sideBarHeading: 'New Visitors', sideBarTextBody: '1.5k' }), document.getElementById('visitors'));
+ReactDOM.render(React.createElement(SidebarWidget, { changeSidebarBackground: '#b28ad6', sideBarHeading: 'Bounce Rate', sideBarTextBody: '50%' }), document.getElementById('bounce'));
+ReactDOM.render(React.createElement(SidebarWidget, { changeSidebarBackground: '#ff4826', sideBarHeading: 'Searches', sideBarTextBody: '28%' }), document.getElementById('search'));
+ReactDOM.render(React.createElement(SidebarWidget, { changeSidebarBackground: '#63c254', sideBarHeading: 'Traffic', sideBarTextBody: '140.5 kb' }), document.getElementById('traffic'));
+
+},{"./components/LargeWidget.jsx":166,"./components/SidebarWidget.jsx":167,"./components/SmallWidget.jsx":168,"./components/WeatherWidget.jsx":169,"react":165,"react-dom":29}]},{},[171]);
