@@ -1,3 +1,20 @@
+html, body {
+	background: #f5f7fa!important;
+}
+
+.header {
+	background: #2d2d2d;
+	margin-top: 30px;
+}
+
+.well {
+	background: #cc7a6f!important;
+}
+
+.header-text {
+	color: #61dafb;
+}
+
 .dashboard {
 	margin-bottom: 30px;
 }
